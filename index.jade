@@ -1,0 +1,57 @@
+extends static/template.jade
+
+block info
+    // metadata
+    - var title = 'my slide template';
+    - var description = 'description';
+    - var author = 'author name';
+    - var department = 'department';
+    - var position = 'position';
+    // - var timestamp = 'yyyy/mm/dd';
+
+    // config
+    - var theme = 'Orange'; // theme color. see http://www.google.com/design/spec/style/color.html
+    - var highlight = true; // syntax highlight using highlight.js
+    - var math = true; // equation prettyprint using mathjax
+    - var molecule = true; // moleculer viewer using pv
+    - var embedImage = true; // embed image as base64
+
+block slides
+    +title-slide
+
+    +part("part title")
+        +slide('multiple column')
+            .row
+                .col3 col3 col3 col3 col3 col3 col3 col3 col3 col3 col3 col3 col3
+                .col5
+                    | col5 <a href="#">link</a> col5 col5 col5 col5 col5 col5 col5 col5 col5 col5
+                    | col5 col5 col5 col5 col5 col5 col5 col5 col5 col5 col5
+                .col4 col4 col4 col4 col4 col4 col4 col4 col4 col4 col4 col4 col4
+
+        +slide('syntax highlight')
+            pre: code.
+                def test(a, b, c):
+                    print(a)
+                    print(b)
+                    print(c)
+
+            p.fragment(data-code-focus='1') def statement
+            p.fragment(data-code-focus='2-4') function body
+
+        +slide('equation')
+            p equation sample
+            | $$ F(u,v) = \int{-\infty}^{\infty} \int{-\infty}^{\infty} f(x,y)\mathrm{e}^{-j2\pi (ux + vy )}dxdy $$
+
+        +slide('embedding image')
+            +img.cover(src="img/hacker.gif")
+
+        +slide('molecular viewer')
+            .row
+                .col5
+                    | moleculer viewer sample
+                    p.fragment(data-camera='15 4887 -16456 -15807 23004 -8413 229595 331179 1005092') change camera
+                    p.fragment(data-visible='protein ligand') change visibility
+
+                .col7: x-pv(data-visible='protein' data-camera="15 -14162 3428 -7253 28440 93763 144613 298057 1763369").cover
+                    x-mol(data-type='pdb' data-render='protein|protein|cartoon|ssSuccession ligand|rname:RAP|ballsAndSticks')
+                        include:escape pdb/1fkb.pdb

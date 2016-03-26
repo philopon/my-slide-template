@@ -1,0 +1,206 @@
+@import "reveal.js/css/reveal.scss";
+@import "google-material-color/dist/palette.scss";
+
+//- grid system
+@import "susy/sass/_susy.scss";
+$susy: (columns: 12, gutters: 1/6, gutter-position: split);
+
+.row {
+    @include container;
+    height: 100%;
+
+    @for $i from 1 through 12 {
+        .col#{$i} {
+            height: 100%;
+            @include span($i);
+        }
+    }
+}
+
+//- theme
+@import "reveal.js/css/theme/template/settings.scss";
+$theme-color: $theme;
+
+$backgroundColor: white;
+$mainColor: black;
+$headingColor: black;
+
+$mainFont: sans-serif;
+$headingFont: $mainFont;
+$headingTextTransform: none;
+
+$mainFontSize: 56px;
+$heading1Size: 2.0em;
+$heading2Size: 1.7em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+$linkColor: palette($theme-color, 700);
+$linkColorHover: palette($theme-color, 'A700');
+
+$selectionBackgroundColor: palette($theme-color, 700);
+$selectionColor: #fff;
+
+@import "reveal.js/css/theme/template/theme.scss";
+
+::-moz-selection {
+    color: $selectionColor;
+    background: $selectionBackgroundColor;
+    text-shadow: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body { background-color: black }
+
+section:not(.stack) {
+    background: white;
+    h1 { text-align: right; }
+}
+
+.reveal .slides {
+    text-align: left;
+
+    a {
+        text-decoration: underline;
+    }
+
+    section {
+        height: 100%;
+    }
+
+    & > section {
+        padding: 0;
+
+        & > section {
+            padding: 0;
+        }
+    }
+
+    #title-slide {
+        & > * {
+            width: 100%;
+            position: absolute;
+            padding: 0 40px;
+        }
+
+        h1 {
+            top: 20%;
+            color: palette($theme-color, 700);
+            font-weight: bold;
+            text-align: left;
+        }
+
+        address {
+            bottom: 40%;
+            text-align: right;
+
+            .department, .position {
+                color: #666;
+                font-size: 0.6em;
+            }
+        }
+
+        time {
+            bottom: 20%;
+            display: block;
+            text-align: right;
+            font-size: 0.8em;
+        }
+    }
+
+    .part-header {
+        background: palette($theme-color, 500) linear-gradient(135deg,palette($theme-color, 500) 50%,palette($theme-color, 600) 50%) no-repeat;
+
+        & > div {
+            position: absolute;
+            width: 100%;
+            bottom: 20%;
+            background: white;
+            padding: 20px 80px;
+
+            * {
+                margin: 0;
+                text-align: left;
+                line-height: 1.1;
+            }
+
+            div {
+                color: #666;
+                font-size: 0.8em;
+            }
+        }
+    }
+
+    section {
+        $title-height: 160px;
+
+        .page-title {
+            height: $title-height;
+
+            h1 {
+                font-size: 1.7em;
+                padding: 30px 40px 0 40px;
+                margin: 0;
+            }
+        }
+
+        .page-content {
+            position: absolute;
+            top: $title-height;
+            left: 0;
+            width: 100%;
+            height: 1080px - $title-height;
+            padding: 10px 40px;
+
+            pre {
+                width: 100%;
+
+                code {
+                    line-height: 1.2;
+                    font-size: 1.5em;
+                }
+            }
+
+            img.cover {
+                display: block;
+                height: 100%;
+                border: none;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+//- reveal-code-focus
+.reveal .slides section .fragment.current-only {
+    opacity: 1;
+    visibility: visible;
+    display: none;
+}
+.reveal .slides section .fragment.current-only.current-fragment {
+    display: block;
+}
+.line {
+    display: block;
+}
+.line.focus {
+    background: palette($theme-color, 100);
+}
+
+x-pv {
+    display: block;
+    height: 100%;
+    visibility: hidden;
+
+    img {
+        margin: 0 !important;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+}

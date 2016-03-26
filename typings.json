@@ -1,0 +1,7 @@
+{
+  "ambientDevDependencies": {
+    "axios": "registry:dt/axios#0.9.1+20160227220841",
+    "gl-matrix": "registry:dt/gl-matrix#2.2.2+20150509140126",
+    "reveal": "registry:dt/reveal#1.3.0+20140618064853"
+  }
+}

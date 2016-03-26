@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2015",
+    "noImplicitAny": true,
+    "sourceMap": false,
+    "outDir": "tmp"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "static/molecule.ts",
+    "typings/browser.d.ts"
+  ]
+}

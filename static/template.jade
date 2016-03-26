@@ -1,0 +1,97 @@
+- var part_number = 0;
+- var theme = 'Red';
+
+block info
+
+mixin title-slide
+    section#title-slide
+        h1= title
+        address
+            if department
+                .department= department
+            if position
+                .position= position
+            .author= author
+        if timestamp
+            time= timestamp
+        else
+            time= getTimestamp()
+
+mixin part(title)
+    - part_number ++;
+    section
+        section.part-header(id='part-'+part_number)
+            div
+                div='part.'+part_number
+                h1=title
+
+        block
+
+mixin slide(title)
+    section
+        .page-title
+            h1= title
+        .page-content
+            block
+
+mixin img
+    - attributes['src'] = embedImage ? encodeBase64(attributes['src']) : attributes['src']
+    img&attributes(attributes)
+
+doctype html
+html(lang="ja")
+    head
+        meta(charset="utf-8")
+
+        title= title
+        meta(name="description" content=description)
+        meta(name="author" content=author)
+
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui")
+
+        style!= sass({file: 'static/style.scss', locals: {theme: theme}, includePaths: paths.sassIncludePaths})
+
+        if highlight
+            style
+                include ../node_modules/highlight.js/styles/tomorrow.css
+
+    body
+        .reveal
+            .slides
+                block slides
+
+        script
+            include ../node_modules/reveal.js/lib/js/head.min.js
+
+        script
+            include ../node_modules/reveal.js/js/reveal.js
+
+        script
+            include main.js
+
+        if highlight
+            script
+                include ../tmp/hl.js
+
+            script
+                include ../node_modules/reveal-code-focus/reveal-code-focus.js
+
+            script
+                include highlight.js
+
+        if math
+            script
+                include ../node_modules/reveal.js/plugin/math/math.js
+
+        if molecule
+            script
+                include ../node_modules/bio-pv/bio-pv.min.js
+
+            //- avoid bug: https://github.com/toji/gl-matrix/issues/134
+            script
+                include ../node_modules/gl-matrix/dist/gl-matrix-min.js
+
+            script
+                include ../tmp/molecule.js
