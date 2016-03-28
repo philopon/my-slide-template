@@ -27,10 +27,8 @@ const paths = {
     dist: 'dist',
     tmp: 'tmp',
 
-    sassIncludePaths: ['node_modules', 'static'].concat(
-        require('bourbon').includePaths,
-        require('bourbon-neat').includePaths
-    ).map((p) => {return path.resolve(p)})
+    sassIncludePaths: ['node_modules', 'static']
+        .map((p) => {return path.resolve(p)})
 };
 
 gulp.task('highlight', () => {

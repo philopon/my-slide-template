@@ -13,6 +13,9 @@
       ]
     ]
   },
+  "scripts": {
+    "postinstall": "$(npm bin)/typings install"
+  },
   "dependencies": {
     "bio-pv": "git+https://github.com/biasmv/pv.git",
     "highlight.js": "^9.2.0",
