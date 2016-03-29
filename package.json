@@ -14,7 +14,7 @@
     ]
   },
   "scripts": {
-    "postinstall": "$(npm bin)/typings install"
+    "postinstall": "rm $(npm bin)/touch; $(npm bin)/typings install"
   },
   "dependencies": {
     "bio-pv": "git+https://github.com/biasmv/pv.git",
