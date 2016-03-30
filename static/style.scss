@@ -57,7 +57,7 @@ $selectionColor: #fff;
 body { background-color: black }
 
 section:not(.stack) {
-    background: white;
+    background: palette($theme-color, 500) linear-gradient(135deg,palette($theme-color, 500) 50%,palette($theme-color, 600) 50%) no-repeat;
     h1 { text-align: right; }
 }
 
@@ -81,6 +81,7 @@ section:not(.stack) {
     }
 
     #title-slide {
+        background: white;
         & > * {
             width: 100%;
             position: absolute;
@@ -113,13 +114,12 @@ section:not(.stack) {
     }
 
     .part-header {
-        background: palette($theme-color, 500) linear-gradient(135deg,palette($theme-color, 500) 50%,palette($theme-color, 600) 50%) no-repeat;
 
         & > div {
             position: absolute;
             width: 100%;
             bottom: 20%;
-            background: white;
+            background-color: white;
             padding: 20px 80px;
 
             * {
@@ -140,6 +140,8 @@ section:not(.stack) {
 
         .page-title {
             height: $title-height;
+            width: 99%;
+            background-color: white;
 
             h1 {
                 font-size: 1.7em;
@@ -149,10 +151,11 @@ section:not(.stack) {
         }
 
         .page-content {
+            background: white;
             position: absolute;
             top: $title-height;
             left: 0;
-            width: 100%;
+            width: 99%;
             height: 1080px - $title-height;
             padding: 10px 40px;
             @include display(flex);
@@ -189,6 +192,10 @@ section:not(.stack) {
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
+            }
+
+            li {
+                margin-bottom: 15px;
             }
 
             @mixin dl-horizontal($left) {
