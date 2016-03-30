@@ -28,6 +28,7 @@ const paths = {
     tmp: 'tmp',
 
     sassIncludePaths: ['node_modules', 'static']
+        .concat(require("bourbon").includePaths)
         .map((p) => {return path.resolve(p)})
 };
 
